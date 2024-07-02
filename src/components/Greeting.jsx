@@ -5,7 +5,7 @@ export default function Greeting() {
 	let greeting = ""
 
 	if (currentHour < 12) {
-		greeting = "Buens días"
+		greeting = "Buenos días"
 	} else if (currentHour < 18) {
 		greeting = "Buenas tardes"
 	} else {

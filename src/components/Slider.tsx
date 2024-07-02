@@ -1,15 +1,12 @@
-"use client"
-
 import * as React from "react"
 import * as SliderPrimitive from "@radix-ui/react-slider"
-
 import cn from "clsx"
 
-const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.Root>, React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>>(({ className, ...props }, ref) => (
+export const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.Root>, React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>>(({ className, ...props }, ref) => (
 	<SliderPrimitive.Root
 		ref={ref}
 		className={cn(
-			"relative flex w-full touch-none select-none items-center",
+			"relative flex touch-none select-none items-center group",
 			className
 		)}
 		{...props}
@@ -22,5 +19,3 @@ const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.Root>, R
 ))
 
 Slider.displayName = SliderPrimitive.Root.displayName
-
-export { Slider }

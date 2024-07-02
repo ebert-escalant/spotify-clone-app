@@ -1,8 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro"
 import { allPlaylists, songs } from "@/lib/data"
-import MusicListTable from "@/components/MusicListTable.astro"
 import { CardPlayButton } from "@/components/CardPlayButton"
+import MusicListTable from "@/components/MusicListTable"
 
 const playlist = allPlaylists.find(playlist => playlist.id === Astro.params.id)
 
@@ -56,7 +56,7 @@ const songsInPlaylist = songs.filter(song => song.albumId === playlist?.albumId)
 		>
 		</div>
 		<section class="p-6">
-			<MusicListTable songs={songsInPlaylist} />
+			<MusicListTable songs={songsInPlaylist} playlist={playlist} client:load />
 		</section>
 	</div>
 </Layout>
