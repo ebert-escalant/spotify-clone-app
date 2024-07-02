@@ -28,7 +28,7 @@ export const Next = () => (
 const CurrentSong = ({ image, title, artists }) => {
 	return (
 		<div className="flex items-center gap-5 relative overflow-hidden">
-			<picture className="w-14 h-14 bg-zinc-800 rounded-md shadow-lg overflow-hidden">
+			<picture className="w-14 h-14 bg-zinc-800 rounded-md shadow-lg overflow-hidden hidden md:block">
 				<img src={image} alt={title} />
 			</picture>
 
@@ -36,7 +36,7 @@ const CurrentSong = ({ image, title, artists }) => {
 				<h3 className="font-semibold text-sm block">
 					{title}
 				</h3>
-				<span className="text-xs opacity-80">
+				<span className="text-xs opacity-80 hidden md:block">
 					{artists?.join(', ')}
 				</span>
 			</div>
@@ -76,7 +76,7 @@ const SongControl = ({ audio }) => {
 				min={0}
 				max={audio?.current?.duration ?? 0}
 				value={[currentTime]}
-				className="w-[400px]"
+				className="w-[200px] sm:w-[250px] md:w-[350px]"
 				onValueChange={([newTime]) => {
 					audio.current.currentTime = newTime
 				}}
@@ -181,11 +181,11 @@ export function Player() {
 		<>
 			{
 				currentMusic?.song && (
-					<div className="flex justify-between items-center w-full px-4 z-50">
-						<div className="w-[250px]">
+					<div className="flex flex-col md:flex-row justify-between items-center w-full px-4 z-50">
+						<div>
 							<CurrentSong {...currentMusic.song} />
 						</div>
-						<div className="grid place-content-center gap-4 flex-1">
+						<div className="grid place-content-center gap-4 flex-1 mt-6 md:mt-0">
 							<div className="flex flex-col justify-center items-center">
 								<div className="flex items-center justify-center gap-8">
 									<button className="text-zinc-400 hover:text-gray-300 disabled:pointer-events-none" disabled={currentMusic.song.id === currentMusic.songs[0].id} onClick={handlePrev}>
@@ -202,7 +202,7 @@ export function Player() {
 								<audio ref={audioRef} />
 							</div>
 						</div>
-						<div className="w-[250px] grid place-content-center">
+						<div className="grid place-content-cente mt-6 md:mt-0">
 							<VolumeControl />
 						</div>
 					</div>
