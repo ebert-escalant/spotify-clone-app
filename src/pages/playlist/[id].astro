@@ -1,11 +1,17 @@
 ---
-import Layout from "@/layouts/Layout.astro"
-import PlayListItemCard from "@/components/PlayListItemCard.astro"
-import { allPlaylists, songs } from "@/lib/data"
+import Layout from "@/layouts/Layout.astro";
+import PlayListItemCard from "@/components/PlayListItemCard.astro";
+import { allPlaylists, songs } from "@/lib/data";
+import MusicListTable from "@/components/MusicListTable.astro";
+import { CardPlayButton } from "@/components/CardPlayButton";
 
-const playlist = allPlaylists.find((playlist) => playlist.id === Astro.params.id)
+const playlist = allPlaylists.find(
+    (playlist) => playlist.id === Astro.params.id,
+);
 
-const songsInPlaylist = songs.filter((song) => song.albumId === playlist?.albumId)
+const songsInPlaylist = songs.filter(
+    (song) => song.albumId === playlist?.albumId,
+);
 ---
 
 <Layout title="Spotify clone">
@@ -15,7 +21,7 @@ const songsInPlaylist = songs.filter((song) => song.albumId === playlist?.albumI
         transition:name=`playlist ${playlist?.id} box`
     >
         <!-- <PageHeader /> -->
-         <header class="flex flex-row gap-8 px-6 mt-10">
+        <header class="flex flex-row gap-8 px-6 mt-10">
             <picture class="aspect-square w-52 h-52 flex-none">
                 <img
                     src={playlist?.cover}
@@ -29,14 +35,15 @@ const songsInPlaylist = songs.filter((song) => song.albumId === playlist?.albumI
                 <div>
                     <h1 class="text-4xl font-bold block text-white">
                         {playlist?.title}
-                        <span transition:name=`playlist ${playlist?.id} title`></span>
+                        <span transition:name=`playlist ${playlist?.id} title`
+                        ></span>
                     </h1>
                 </div>
 
                 <div class="flex flex-1 items-end">
                     <div class="text-sm text-gray-300 font-normal">
                         <div transition:name=`playlist ${playlist?.id} artists`>
-                            { playlist?.artists.join(', ') }
+                            {playlist?.artists.join(", ")}
                         </div>
                         <p class="mt-1">
                             <span>50 canciones</span>, 3 horas 30 minutos
@@ -44,10 +51,17 @@ const songsInPlaylist = songs.filter((song) => song.albumId === playlist?.albumI
                     </div>
                 </div>
             </div>
-         </header>
-        <div class="relative z-10 px-6 pt-4">
-
+        </header>
+        <div class="pl-6 pt-6">
+            <CardPlayButton client:load id={playlist?.id} size="large" />
         </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-10"></div>
+        <div class="relative z-10 px-6 pt-4"></div>
+        <div
+            class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-10"
+        >
+        </div>
+        <section class="p-6">
+            <MusicListTable songs={songsInPlaylist} />
+        </section>
     </div>
 </Layout>
