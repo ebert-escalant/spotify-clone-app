@@ -1,14 +1,13 @@
-import { defineConfig } from 'astro/config';
-import tailwind from "@astrojs/tailwind";
-import svelte from "@astrojs/svelte";
+import { defineConfig } from 'astro/config'
+import tailwind from "@astrojs/tailwind"
 
-import react from "@astrojs/react";
+import react from "@astrojs/react"
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), svelte(), react()],
-  output: 'server',
-  devToolbar: {
-    enabled: false
-  }
+	integrations: [tailwind(), react()],
+	output: 'server',
+	devToolbar: {
+		enabled: false
+	}
 });

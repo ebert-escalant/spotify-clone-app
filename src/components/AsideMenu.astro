@@ -8,27 +8,25 @@ import { playlists } from "@/lib/data"
 ---
 
 <nav class="flex flex-col flex-1 gap-2">
-    <div class="bg-zinc-900 rounded p-2">
-        <ul>
-            <AsideMenuItem href="/">
-                <HomeIcon />
-                Inicio
-            </AsideMenuItem>
-            <AsideMenuItem href="/#">
-                <SearchIcon />
-                Buscar
-            </AsideMenuItem>
-        </ul>
-    </div>
-    <div class="bg-zinc-900 rounded p-2 flex-1">
-        <ul>
-            <AsideMenuItem href="/#">
-                <LibraryIcon />
-                Tu biblioteca
-            </AsideMenuItem>
-            {
-                playlists.map((playlist) => <AsideMenuCard playlist={playlist} />)
-            }
-        </ul>
-    </div>
+	<div class="bg-zinc-900 rounded p-2">
+		<ul>
+			<AsideMenuItem href="/">
+				<HomeIcon />
+				Inicio
+			</AsideMenuItem>
+			<AsideMenuItem href="/#">
+				<SearchIcon />
+				Buscar
+			</AsideMenuItem>
+		</ul>
+	</div>
+	<div class="bg-zinc-900 rounded p-2 flex-1">
+		<ul>
+			<AsideMenuItem href="/#">
+				<LibraryIcon />
+				Tu biblioteca
+			</AsideMenuItem>
+			{playlists.map((playlist) => <AsideMenuCard playlist={playlist} />)}
+		</ul>
+	</div>
 </nav>
